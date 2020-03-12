@@ -90,6 +90,11 @@ public class GameStoreController implements CommandLineRunner {
                     DetailedGameDto detailedGameDto = new DetailedGameDto(gameName);
                     this.gameService.getDetailedGameInfo(detailedGameDto);
                     break;
+                case"AddItem":
+                    if(this.loggedInUser != null){
+
+                    }
+                    break;
             }
             inputLine = scanner.nextLine();
         }
