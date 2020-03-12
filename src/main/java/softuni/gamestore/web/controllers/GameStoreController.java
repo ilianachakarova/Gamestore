@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import softuni.gamestore.domain.dtos.*;
 import softuni.gamestore.service.GameService;
+import softuni.gamestore.service.ShoppingCart;
 import softuni.gamestore.service.UserService;
 
 import java.math.BigDecimal;
@@ -16,12 +17,14 @@ import java.util.Scanner;
 public class GameStoreController implements CommandLineRunner {
     private final UserService userService;
     private final GameService gameService;
+    private final ShoppingCart shoppingCart;
     private String loggedInUser;
 
     @Autowired
-    public GameStoreController(UserService userService, GameService gameService) {
+    public GameStoreController(UserService userService, GameService gameService, ShoppingCart shoppingCart) {
         this.userService = userService;
         this.gameService = gameService;
+        this.shoppingCart = shoppingCart;
     }
 
     @Override
@@ -92,7 +95,8 @@ public class GameStoreController implements CommandLineRunner {
                     break;
                 case"AddItem":
                     if(this.loggedInUser != null){
-
+                        UserAddGameDto userAddGameDto = new UserAddGameDto(this.loggedInUser);
+                        System.out.println(this.shoppingCart.addItem(inputParams[1],userAddGameDto));
                     }
                     break;
             }

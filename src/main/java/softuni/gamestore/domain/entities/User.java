@@ -47,7 +47,7 @@ public class User extends BaseEntity{
     public void setRole(Role role) {
         this.role = role;
     }
-    @ManyToMany(targetEntity = Game.class)
+    @ManyToMany(targetEntity = Game.class,cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 //    @JoinTable(name = "users_games",
 //    joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
 //    inverseJoinColumns = @JoinColumn(name = "game_id",referencedColumnName = "id"))
